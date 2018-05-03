@@ -12,11 +12,4 @@ import mx.gentlepillar.hpatcc.nucleo.interfaces.ICliente;
  */
 public class ClienteImplementacion implements ICliente{
     
-    
-    @Override
-    public boolean validation(String numero, char[] contrasenia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
 }

@@ -10,5 +10,4 @@ package mx.gentlepillar.hpatcc.nucleo.interfaces;
  * @author jesus
  */
 public interface ICliente {
-    public boolean validation(String numero, char[] contrasenia);
 }
