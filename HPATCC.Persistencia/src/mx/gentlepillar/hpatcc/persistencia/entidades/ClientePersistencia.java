@@ -19,6 +19,23 @@ import org.hibernate.criterion.Restrictions;
  */
 public class ClientePersistencia {
 
+    
+        public Cliente getByNumber(String numero) {
+        Cliente cliente = new Cliente();
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Cliente> criteria = builder.createQuery(Cliente.class);
+            criteria.from(Cliente.class);
+            cliente = (Cliente) session.createCriteria(Cliente.class).add(Restrictions.eq("numero", numero)).list().get(0);
+            session.close();
+        } catch (Exception e) {
+            System.out.println("Ocurrión un error al intentar obtener el nombre. Descripción" + e.getMessage());
+        }
+        return cliente;
+    }
+        
     public List<Cliente> obtenerTodos() {
         List<Cliente> clientes = new ArrayList<Cliente>();
         try {
