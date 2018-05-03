@@ -20,6 +20,8 @@ import javax.persistence.OneToOne;
 public class Cliente {
     private int id;
     private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
     private String calle;
     private String ciudad;
     private String estado;
@@ -186,6 +188,34 @@ public class Cliente {
      */
     public void setContrasenia(char[] contrasenia) {
         this.contrasenia = contrasenia;
+    }
+
+    /**
+     * @return the apellidoPaterno
+     */
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+    /**
+     * @param apellidoPaterno the apellidoPaterno to set
+     */
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+    /**
+     * @return the apellidoMaterno
+     */
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    /**
+     * @param apellidoMaterno the apellidoMaterno to set
+     */
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
     }
     
 }
