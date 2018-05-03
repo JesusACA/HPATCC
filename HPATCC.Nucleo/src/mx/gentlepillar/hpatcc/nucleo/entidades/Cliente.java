@@ -27,6 +27,8 @@ public class Cliente {
     private int llamadasLocales;
     private int llamadasCelular;
     private Paquete paquete;
+    private String numero;
+    private char[] contrasenia;
 
     /**
      * @return the id
@@ -156,6 +158,34 @@ public class Cliente {
      */
     public void setPaquete(Paquete paquete) {
         this.paquete = paquete;
+    }
+
+    /**
+     * @return the numero
+     */
+    public String getNumero() {
+        return numero;
+    }
+
+    /**
+     * @param numero the numero to set
+     */
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
+
+    /**
+     * @return the contrasenia
+     */
+    public char[] getContrasenia() {
+        return contrasenia;
+    }
+
+    /**
+     * @param contrasenia the contrasenia to set
+     */
+    public void setContrasenia(char[] contrasenia) {
+        this.contrasenia = contrasenia;
     }
     
 }
