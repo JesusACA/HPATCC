@@ -10,5 +10,5 @@ package mx.gentlepillar.hpatcc.nucleo.interfaces;
  * @author jesus
  */
 public interface ILlamada {
-    public boolean verificar(String numero);
+    public boolean verify(String numero);
 }

@@ -16,7 +16,7 @@ import mx.gentlepillar.hpatcc.nucleo.interfaces.ILlamada;
 public class LlamadaImplementacion implements ILlamada{
 
     @Override
-    public boolean verificar(String numero) {
+    public boolean verify(String numero) {
         Pattern pat = Pattern.compile("[^62222] + [/d{10}]$");
         Matcher mat = pat.matcher(numero);
         return mat.find();

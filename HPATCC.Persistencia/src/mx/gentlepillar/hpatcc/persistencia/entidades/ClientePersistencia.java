@@ -19,8 +19,7 @@ import org.hibernate.criterion.Restrictions;
  */
 public class ClientePersistencia {
 
-    
-        public Cliente getByNumber(String numero) {
+    public Cliente getByNumber(String numero) {
         Cliente cliente = new Cliente();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
