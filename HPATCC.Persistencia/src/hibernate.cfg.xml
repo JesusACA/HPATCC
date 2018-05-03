@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+        <property name = "hibernate.id.new_generator_mappings">false</property>
+        <property name = "hibernate.dialect">
+            org.hibernate.dialect.MySQLDialect
+        </property>
+        <property name = "hibernate.connecton.driver:class">
+            com.mysql.jdbc.Driver
+        </property>
+        <property name = "hibernate.connection.url">
+            jdbc:mysql://localhost/hpatccdb
+        </property>
+        <property name = "hibernate.connection.username">
+            root
+        </property>
+        <property name = "hibernate.connection.password">
+           231215Npokp1rt
+        </property>
+        <property name="hibernate.enable_lazy_load_no_trans">
+            true        
+        </property>
+      <mapping class="mx.gentlepillar.hpatcc.nucleo.entidades.Cliente"/>
+      <mapping class="mx.gentlepillar.hpatcc.nucleo.entidades.Paquete"/>
+      <mapping class="mx.gentlepillar.hpatcc.nucleo.entidades.Configuracion"/>
+      <mapping class="mx.gentlepillar.hpatcc.nucleo.entidades.Factura"/>
+      <mapping class="mx.gentlepillar.hpatcc.nucleo.entidades.Llamada"/>
+    </session-factory>
+</hibernate-configuration>
+
+    
