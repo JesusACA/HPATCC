@@ -5,6 +5,7 @@
  */
 package mx.gentlepillar.hpatcc.persistencia.operaciones;
 
+import mx.gentlepillar.chuyptionpane.vistas.ChuyptionPane;
 import mx.gentlepillar.hpatcc.nucleo.entidades.Cliente;
 import mx.gentlepillar.hpatcc.persistencia.entidades.ClientePersistencia;
 
@@ -14,13 +15,19 @@ import mx.gentlepillar.hpatcc.persistencia.entidades.ClientePersistencia;
  */
 public class ClienteOperaciones {
     ClientePersistencia  clientePers = new ClientePersistencia(); 
+    ChuyptionPane pane = new ChuyptionPane();
     public boolean verify(String numero, char[] contrasenia){
+        boolean respuesta = false;
         Cliente cliente = clientePers.getByNumber(numero);
         if (cliente != null) {
-            
+            if (contrasenia.equals(cliente.getContrasenia())) {
+                respuesta = true;
+            }else{
+                pane.showMessage(null, "La contraseña es incorrecta", "Error");
+            }
         }else{
-            
+            pane.showMessage(null, "No se ha encontrado el usuario", "Error");
         }
-        return false;
+        return respuesta;
     }
 }
