@@ -14,7 +14,7 @@ import javax.persistence.Id;
  * @author jesus
  */
 @Entity
-public class Adminsitrador {
+public class Administrador {
     private int id;
     private String noControl;
     private char[] contrasenia;
