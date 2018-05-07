@@ -5,6 +5,8 @@
  */
 package mx.gentlepillar.hpatcc.nucleo.entidades;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -47,6 +49,13 @@ public class Llamada {
      */
     public void setNumero(String numero) {
         this.numero = numero;
+        Pattern pat = Pattern.compile("[^62222] + [/d{10}]$");
+        Matcher mat = pat.matcher(numero);
+        if (mat.find()) {
+            this.setTipo(2);
+        }else{
+            this.setTipo(1);
+        }
     }
 
     /**
@@ -73,7 +82,7 @@ public class Llamada {
     /**
      * @param tipo the tipo to set
      */
-    public void setTipo(int tipo) {
+    private void setTipo(int tipo) {
         this.tipo = tipo;
     }
 }
