@@ -173,8 +173,8 @@ public class AgregarAdmin extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.setVisible(false);
-        Principal p = new Principal();
-        p.setVisible(true);
+        VistaAdmin vi = new VistaAdmin();
+        vi.setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     /**
