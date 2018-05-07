@@ -6,11 +6,14 @@
 package mx.gentlepillar.hpatcc.nucleo.entidades;
 
 import java.util.Date;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 
@@ -27,6 +30,8 @@ public class Factura {
     private int mes;
     private Cliente cliente;
     private double total;
+    private String noControl;
+    private List<Llamada> llamadas;
 
     /**
      * @return the id
@@ -104,6 +109,40 @@ public class Factura {
      */
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    /**
+     * @return the noControl
+     */
+    public String getNoControl() {
+        return noControl;
+    }
+
+    /**
+     * @param noControl the noControl to set
+     */
+    public void setNoControl(String noControl) {
+        this.noControl = noControl;
+    }
+
+    /**
+     * @return the llamadas
+     */
+    @ManyToMany(cascade = { CascadeType.MERGE })
+    @JoinTable(
+        name = "rel_factura_llamada", 
+        joinColumns = { @JoinColumn(name = "idFactura") }, 
+        inverseJoinColumns = { @JoinColumn(name = "idLlamada") }
+    )
+    public List<Llamada> getLlamadas() {
+        return llamadas;
+    }
+
+    /**
+     * @param llamadas the llamadas to set
+     */
+    public void setLlamadas(List<Llamada> llamadas) {
+        this.llamadas = llamadas;
     }
     
 }
