@@ -28,6 +28,7 @@
       <mapping class="mx.gentlepillar.hpatcc.nucleo.entidades.Configuracion"/>
       <mapping class="mx.gentlepillar.hpatcc.nucleo.entidades.Factura"/>
       <mapping class="mx.gentlepillar.hpatcc.nucleo.entidades.Llamada"/>
+      <mapping class="mx.gentlepillar.hpatcc.nucleo.entidades.Adminsirador"/>
     </session-factory>
 </hibernate-configuration>
 
