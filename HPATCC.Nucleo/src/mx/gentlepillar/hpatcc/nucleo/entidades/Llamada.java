@@ -5,9 +5,12 @@
  */
 package mx.gentlepillar.hpatcc.nucleo.entidades;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -18,6 +21,8 @@ public class Llamada {
     private int id;
     private String numero;
     private double duracion;
+    private int tipo;
+    private Factura factura;
 
     /**
      * @return the id
@@ -60,5 +65,35 @@ public class Llamada {
      */
     public void setDuracion(double duracion) {
         this.duracion = duracion;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public int getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the factura
+     */
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "idFactura")
+    public Factura getFactura() {
+        return factura;
+    }
+
+    /**
+     * @param factura the factura to set
+     */
+    public void setFactura(Factura factura) {
+        this.factura = factura;
     }
 }
