@@ -126,6 +126,11 @@ public class VistaAdmin extends javax.swing.JFrame {
         jButton4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/gentlepillar/hpatcc/presentacion/imagenes/settings.png"))); // NOI18N
         jButton4.setText("Configuracion principal\n");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,6 +221,12 @@ public class VistaAdmin extends javax.swing.JFrame {
         FacturasAdmin fa = new FacturasAdmin();
         fa.setVisible(true);
     }//GEN-LAST:event_btnFacturaActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       this.setVisible(false);
+       Configuracion c = new Configuracion();
+       c.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
