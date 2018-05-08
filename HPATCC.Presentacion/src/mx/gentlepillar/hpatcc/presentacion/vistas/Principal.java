@@ -11,19 +11,23 @@ import mx.gentlepillar.chuyptionpane.vistas.ChuyptionPane;
 import mx.gentlepillar.hpatcc.nucleo.entidades.Administrador;
 import mx.gentlepillar.hpatcc.persistencia.entidades.AdministradorPersistencia;
 import mx.gentlepillar.hpatcc.persistencia.operaciones.AdministradorOperaciones;
+import mx.gentlepillar.hpatcc.persistencia.operaciones.ClienteOperaciones;
 
 /**
  *
  * @author jesus
  */
 public class Principal extends javax.swing.JFrame {
+
     AdministradorPersistencia adminsPers = new AdministradorPersistencia();
     List<Administrador> administradores;
     public static int i = 0;
+    public static ClienteOperaciones clienteOps = new ClienteOperaciones();
     public static AdministradorOperaciones adminOps = new AdministradorOperaciones();
     public static ChuyptionPane chuyPane = new ChuyptionPane();
     public static AdministradorPersistencia adminPers = new AdministradorPersistencia();
-     /**
+
+    /**
      * Creates new form Principal
      */
     public Principal() {
@@ -207,7 +211,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseEntered
-        btnCerrar.setForeground(new Color(255,255,255));
+        btnCerrar.setForeground(new Color(255, 255, 255));
     }//GEN-LAST:event_btnCerrarMouseEntered
 
     private void btnCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseExited
@@ -223,15 +227,17 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-        FacturaUsuario fu = new FacturaUsuario();
-        fu.setVisible(true);
+        if (clienteOps.verify(this.txtNumber.getText(), this.txtPassword.getText())) {
+            this.setVisible(false);
+            FacturaUsuario fu = new FacturaUsuario();
+            fu.setVisible(true);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     LoginAdmin la = new LoginAdmin();
-     la.setVisible(true);
-     this.setVisible(false);
+        LoginAdmin la = new LoginAdmin();
+        la.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -239,7 +245,7 @@ public class Principal extends javax.swing.JFrame {
         AgregarAdmin ag = new AgregarAdmin();
         if (administradores.size() <= 0) {
             ag.setVisible(true);
-        }else{
+        } else {
             i = 1;
         }
     }//GEN-LAST:event_formComponentShown

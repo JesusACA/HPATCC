@@ -16,7 +16,7 @@ import mx.gentlepillar.hpatcc.persistencia.entidades.ClientePersistencia;
 public class ClienteOperaciones {
     ClientePersistencia  clientePers = new ClientePersistencia(); 
     ChuyptionPane pane = new ChuyptionPane();
-    public boolean verify(String numero, char[] contrasenia){
+    public boolean verify(String numero, String contrasenia){
         boolean respuesta = false;
         Cliente cliente = clientePers.getByNumber(numero);
         if (cliente != null) {
@@ -26,8 +26,12 @@ public class ClienteOperaciones {
                 pane.showMessage(null, "La contraseña es incorrecta", "Error");
             }
         }else{
-            pane.showMessage(null, "No se ha encontrado el usuario", "Error");
+            pane.showMessage(null, "Usuario no encontrado", "Error");
         }
         return respuesta;
+    }
+    
+    public boolean exists(String numero){
+        return clientePers.getByNumber(numero) == null;
     }
 }
