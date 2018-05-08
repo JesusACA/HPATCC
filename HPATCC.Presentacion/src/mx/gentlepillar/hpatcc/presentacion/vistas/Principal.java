@@ -11,6 +11,7 @@ import mx.gentlepillar.chuyptionpane.vistas.ChuyptionPane;
 import mx.gentlepillar.hpatcc.nucleo.entidades.Administrador;
 import mx.gentlepillar.hpatcc.persistencia.entidades.AdministradorPersistencia;
 import mx.gentlepillar.hpatcc.persistencia.entidades.ClientePersistencia;
+import mx.gentlepillar.hpatcc.persistencia.entidades.ConfiguracionPersistencia;
 import mx.gentlepillar.hpatcc.persistencia.entidades.PaquetePersistencia;
 import mx.gentlepillar.hpatcc.persistencia.operaciones.AdministradorOperaciones;
 import mx.gentlepillar.hpatcc.persistencia.operaciones.ClienteOperaciones;
@@ -32,6 +33,7 @@ public class Principal extends javax.swing.JFrame {
     public static PaqueteOperaciones paqueteOps = new PaqueteOperaciones();
     public static PaquetePersistencia paquetePers = new PaquetePersistencia();
     public static ClientePersistencia clientePers = new ClientePersistencia();
+    public static ConfiguracionPersistencia configPersis = new ConfiguracionPersistencia();
     /**
      * Creates new form Principal
      */

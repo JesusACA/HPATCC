@@ -333,8 +333,8 @@ public class Alta extends javax.swing.JFrame {
                 cliente.setPaquete(Principal.paquetePers.getById(paquetes.get(this.cmbxPaquete.getSelectedIndex()).getId()));
                 Principal.clientePers.save(cliente);
                 limpiarCamps();
-                Principal.chuyPane.showMessage(null, "Se ha agregado al cliente");
                 this.btnCerrarActionPerformed(evt);
+                Principal.chuyPane.showMessage(null, "Se ha agregado al cliente");
             } else {
                 Principal.chuyPane.showMessage(null, "Número telefónico inválido");
             }

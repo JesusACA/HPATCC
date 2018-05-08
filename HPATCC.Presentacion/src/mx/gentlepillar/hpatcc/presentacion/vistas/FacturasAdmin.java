@@ -6,6 +6,9 @@
 package mx.gentlepillar.hpatcc.presentacion.vistas;
 
 import java.awt.Color;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import mx.gentlepillar.hpatcc.nucleo.entidades.Cliente;
 
 /**
  *
@@ -16,6 +19,7 @@ public class FacturasAdmin extends javax.swing.JFrame {
     /**
      * Creates new form FacturasAdmin
      */
+    List<Cliente> clientes;
     public FacturasAdmin() {
         initComponents();
         this.lblAnios.setVisible(false);
@@ -67,6 +71,11 @@ public class FacturasAdmin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(245, 249, 233));
 
@@ -259,6 +268,19 @@ public class FacturasAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbxFacturaItemStateChanged
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        llenarComboCliente();
+    }//GEN-LAST:event_formComponentShown
+
+    
+    public void llenarComboCliente(){
+        clientes = Principal.clientePers.obtenerTodos();
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        clientes.forEach((cliente) -> {
+        modelo.addElement(cliente.getNumero());
+        });
+        this.cmxbCliente.setModel(modelo);
+    }
     /**
      * @param args the command line arguments
      */

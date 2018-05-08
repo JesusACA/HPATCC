@@ -25,7 +25,6 @@ import javax.persistence.Temporal;
 public class Factura {
     private int id;
     private Date fecha;
-    private Date fechaExpiracion;
     private int anio;
     private int mes;
     private Cliente cliente;
@@ -65,22 +64,7 @@ public class Factura {
         this.anio = fecha.getYear() + 1900;
         this.mes = fecha.getMonth() + 1;
     }
-
-    /**
-     * @return the fechaExpiracion
-     */
-    @Temporal(javax.persistence.TemporalType.DATE)
-    public Date getFechaExpiracion() {
-        return fechaExpiracion;
-    }
-
-    /**
-     * @param fechaExpiracion the fechaExpiracion to set
-     */
-    public void setFechaExpiracion(Date fechaExpiracion) {
-        this.fechaExpiracion = fechaExpiracion;
-    }
-
+    
     /**
      * @return the cliente
      */

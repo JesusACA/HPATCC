@@ -6,21 +6,22 @@
 package mx.gentlepillar.hpatcc.presentacion.vistas;
 
 import java.awt.Color;
+import mx.gentlepillar.hpatcc.nucleo.entidades.Configuracion;
 
 /**
  *
  * @author osmar
  */
-public class Configuracion extends javax.swing.JFrame {
+public class ConfiguracionEditable extends javax.swing.JFrame {
 
     /**
-     * Creates new form Configuracion
+     * Creates new form ConfiguracionEditable
      */
-    public Configuracion() {
+    Configuracion configuracion;
+
+    public ConfiguracionEditable() {
         initComponents();
         this.setLocationRelativeTo(null);
-        txtCelular.setEditable(false);
-        txtLocales.setEditable(false);
     }
 
     /**
@@ -85,16 +86,39 @@ public class Configuracion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel1.setText("Precio por llamadas extras locales");
 
         txtLocales.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtLocales.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtLocales.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtLocalesFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtLocalesFocusLost(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel2.setText("Precio por minutos extras a celular");
 
         txtCelular.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtCelular.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtCelular.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtCelularFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCelularFocusLost(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(73, 109, 219));
 
@@ -132,6 +156,7 @@ public class Configuracion extends javax.swing.JFrame {
                 .addComponent(btnCerrar1))
         );
 
+        btnEditar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,20 +169,24 @@ public class Configuracion extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(txtLocales, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtCelular)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(txtLocales, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,35 +220,65 @@ public class Configuracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseEntered
-        btnCerrar.setForeground(Color.white);
+
     }//GEN-LAST:event_btnCerrarMouseEntered
 
     private void btnCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseExited
-        btnCerrar.setForeground(Color.black);
+
     }//GEN-LAST:event_btnCerrarMouseExited
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-       
+
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnCerrar1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrar1MouseEntered
-        // TODO add your handling code here:
+        btnCerrar1.setForeground(Color.white);
     }//GEN-LAST:event_btnCerrar1MouseEntered
 
     private void btnCerrar1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrar1MouseExited
-        // TODO add your handling code here:
+        btnCerrar1.setForeground(Color.black);
     }//GEN-LAST:event_btnCerrar1MouseExited
 
     private void btnCerrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrar1ActionPerformed
-       this.setVisible(false);
+        this.setVisible(false);
         VistaAdmin p = new VistaAdmin();
         p.setVisible(true);
     }//GEN-LAST:event_btnCerrar1ActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       txtCelular.setEditable(true);
-       txtLocales.setEditable(true);
+        Configuracion confActualizable = Principal.configPersis.getById(1);
+        confActualizable.setPrecioCelular(Double.parseDouble(this.txtCelular.getText().replace("$", "")));
+        confActualizable.setPrecioLocales(Double.parseDouble(this.txtLocales.getText().replace("$", "")));
+        Principal.configPersis.update(confActualizable);
+        btnCerrar1ActionPerformed(evt);
+        Principal.chuyPane.showMessage(null, "Configuracion ha sido actualizada");
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        llenarCampos();
+    }//GEN-LAST:event_formComponentShown
+
+    private void txtLocalesFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLocalesFocusGained
+        this.txtLocales.setText(this.txtLocales.getText().replace("$", ""));
+    }//GEN-LAST:event_txtLocalesFocusGained
+
+    private void txtLocalesFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtLocalesFocusLost
+        this.txtLocales.setText("$" + this.txtLocales.getText());
+    }//GEN-LAST:event_txtLocalesFocusLost
+
+    private void txtCelularFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusGained
+        this.txtCelular.setText(this.txtCelular.getText().replace("$", ""));
+    }//GEN-LAST:event_txtCelularFocusGained
+
+    private void txtCelularFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCelularFocusLost
+        this.txtCelular.setText("$" + this.txtCelular.getText());
+    }//GEN-LAST:event_txtCelularFocusLost
+
+    public void llenarCampos() {
+        configuracion = Principal.configPersis.getById(1);
+        this.txtCelular.setText("$" + configuracion.getPrecioCelular());
+        this.txtLocales.setText("$" + configuracion.getPrecioLocales());
+    }
 
     /**
      * @param args the command line arguments
@@ -238,20 +297,21 @@ public class Configuracion extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Configuracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfiguracionEditable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Configuracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfiguracionEditable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Configuracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfiguracionEditable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Configuracion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConfiguracionEditable.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Configuracion().setVisible(true);
+                new ConfiguracionEditable().setVisible(true);
             }
         });
     }
