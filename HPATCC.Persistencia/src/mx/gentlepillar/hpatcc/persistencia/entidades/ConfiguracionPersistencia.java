@@ -18,6 +18,11 @@ import org.hibernate.criterion.Restrictions;
  * @author jesus
  */
 public class ConfiguracionPersistencia {
+    
+    /**
+     * Regresa todas las configuraciones que esten registradas en la base de datos.
+     * @return configuraciones
+     */
     public List<Configuracion> obtenerTodos(){
         List<Configuracion> configuraciones = new ArrayList<Configuracion>();
         try {
@@ -33,7 +38,10 @@ public class ConfiguracionPersistencia {
         }
         return configuraciones;
     }
-    
+    /**
+     *Guarda un objeto tipo configuracion dentro de la base de datos.
+     * @param configuracion 
+     */
     public void save(Configuracion configuracion){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -46,7 +54,10 @@ public class ConfiguracionPersistencia {
             System.out.println("Ocurrió un error al intentar guardad el objeto de tipo configuracion");
         }
     }
-    
+    /**
+     * Actualiza un objeto tipo Configuracion dentro de la base de datos
+     * @param configuracion 
+     */
     public void update(Configuracion configuracion){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -59,7 +70,10 @@ public class ConfiguracionPersistencia {
             System.out.println("Ocurrió un error al intentar actualizar el objeto de tipo configuracion");
         }
     }
-    
+    /**
+     * Elimina un objeto tipo Configuracion dentro de la base de datos
+     * @param configuracion 
+     */
     public void delete(Configuracion configuracion){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -72,7 +86,12 @@ public class ConfiguracionPersistencia {
             System.out.println("Ocurrió un error al intentar eliminar el objeto de tipo configuracion");
         }
     }
-    
+    /**
+     * 
+     * @param id
+     * Obtiene por ID un objeto tipo Configuracion que este registrado dentro de la base de datos
+     * @return 
+     */
     public Configuracion getById(int id){
         Configuracion configuracion = new Configuracion();
         try {

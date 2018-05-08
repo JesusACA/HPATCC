@@ -14,5 +14,12 @@ import mx.gentlepillar.hpatcc.nucleo.entidades.Paquete;
  * @author jesus
  */
 public interface IFactura {
+    /**
+     * Calcula los valores totales en cada una de las secciones
+     * @param factura
+     * @param paquete
+     * @param configuracion
+     * @return totales
+     */
     public double[] totales(Factura factura, Paquete paquete, Configuracion configuracion);
 }

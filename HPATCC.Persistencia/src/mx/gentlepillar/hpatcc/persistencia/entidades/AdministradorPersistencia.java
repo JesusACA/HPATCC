@@ -17,6 +17,10 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author jesus
  */
+
+/** 
+ * Regresa todos los administradores que esten registrados en la base de datos.
+ */
 public class AdministradorPersistencia {
     public List<Administrador> getAll(){
         List<Administrador> administradores = new ArrayList<Administrador>();
@@ -34,6 +38,11 @@ public class AdministradorPersistencia {
         return administradores;
     }
     
+    /** 
+     * @param administrador
+     * Guarda en la base de datos un dato de tipo Administrador
+     */
+    
     public void save(Administrador administrador){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -46,7 +55,11 @@ public class AdministradorPersistencia {
             System.out.println("Ocurrió un error al intentar guardad el objeto de tipo Administrador");
         }
     }
-    
+    /** 
+     * 
+     * @param administrador 
+     * Actualiza un dato dentro de la base de datos de tipo Administrador
+     */
     public void update(Administrador administrador){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -59,8 +72,12 @@ public class AdministradorPersistencia {
             System.out.println("Ocurrió un error al intentar actualizar el objeto de tipo Administrador");
         }
     }
-    
-    public void delte(Administrador administrador){
+    /** 
+     * 
+     * @param administrador
+     * Borra un dato dentro de la base de datos de tipo Administrador
+     */
+    public void delete(Administrador administrador){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session = HibernateUtil.getSessionFactory().openSession();
@@ -72,7 +89,12 @@ public class AdministradorPersistencia {
             System.out.println("Ocurrió un error al intentar borrar el objeto de tipo Administrador");
         }
     }
-    
+    /**
+     * 
+     * @param id
+     * Busca dentro de la base de datos por ID a un objeto tipo Administrador.
+     * @return administrador
+     */
     public Administrador getById(int id){
         Administrador administrador = null;
         try {
@@ -87,7 +109,12 @@ public class AdministradorPersistencia {
         }
         return administrador;
     }
-    
+    /**
+     * 
+     * @param noControl
+     * Busca dentro de la base de datos por Numero de Control a un tipo objeto tipo Administrador.
+     * @return administrador
+     */
     public Administrador getByNumControl(String noControl){
         Administrador administrador = null;
         try {

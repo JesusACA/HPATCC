@@ -22,6 +22,13 @@ import mx.gentlepillar.hpatcc.nucleo.interfaces.IFactura;
 public class FacturaImplementacion implements IFactura{
 
     @Override
+    /**
+     * Calcula los valores totales en cada una de las secciones
+     * @param factura
+     * @param paquete
+     * @param configuracion
+     * @return totales
+     */
     public double[] totales(Factura factura, Paquete paquete, Configuracion configuracion) {
         double[] totales = new double[3];
         int sobranteLocales;

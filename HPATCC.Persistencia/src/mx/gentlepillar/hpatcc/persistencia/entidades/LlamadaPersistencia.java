@@ -18,6 +18,10 @@ import org.hibernate.criterion.Restrictions;
  * @author jesus
  */
 public class LlamadaPersistencia {
+   /**
+    * Obtiene todas las llamadas que esten registradas en la base de datos
+    * @return llamadas
+    */
     public List<Llamada> getAll(){
         List<Llamada> llamadas = new ArrayList<Llamada>();
         try {
@@ -33,7 +37,10 @@ public class LlamadaPersistencia {
         }
         return llamadas;
     }
-    
+    /**
+     * Guarda un objeto tipo Llamada dentro de la base de datos
+     * @param llamada 
+     */
     public void save(Llamada llamada){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -46,7 +53,10 @@ public class LlamadaPersistencia {
             System.out.println("Ocurrió un error al intentar guardad el objeto de tipo Llamada");
         }
     }
-    
+    /**
+     * Actualiza un objeto tipo llamada dentro de la base de datos
+     * @param llamada 
+     */
     public void update(Llamada llamada){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -59,7 +69,10 @@ public class LlamadaPersistencia {
             System.out.println("Ocurrió un error al intentar actualizar el objeto de tipo Llamada");
         }
     }
-    
+    /**
+     * Borra un objeto tipo Llamada dentro de la base de datos
+     * @param llamada 
+     */
     public void delete(Llamada llamada){
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -72,7 +85,11 @@ public class LlamadaPersistencia {
             System.out.println("Ocurrió un error al intentar borrar el objeto de tipo Llamada");
         }
     }
-    
+    /**
+     * Obtene un objeto tipo llamada por ID que este registrado dentro de la base de datos
+     * @param id
+     * @return llamada
+     */
     public Llamada getById(int id){
         Llamada llamada = new Llamada();
         try {

@@ -18,7 +18,10 @@ import org.hibernate.criterion.Restrictions;
  * @author jesus
  */
 public class PaquetePersistencia {
-
+/**
+ * Obtiene todos los objetos tipo Paquete que esten registrados dentro de la base de datos.
+ * @return paquetes
+ */
     public List<Paquete> obtenerTodos() {
         List<Paquete> paquetes = new ArrayList<Paquete>();
         try {
@@ -34,7 +37,10 @@ public class PaquetePersistencia {
         }
         return paquetes;
     }
-
+/**
+ * Guarda un objeto tipo paquete dentro de la base de datos
+ * @param paquete 
+ */
     public void save(Paquete paquete) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -47,7 +53,10 @@ public class PaquetePersistencia {
             System.out.println("Ocurrió un error al intentar guardad el objeto de tipo paquete");
         }
     }
-
+/**
+ * Actualiza un objeto tipo paquete dentro de la base de datos.
+ * @param paquete 
+ */
     public void update(Paquete paquete) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -60,7 +69,10 @@ public class PaquetePersistencia {
             System.out.println("Ocurrió un error al intentar actualizar el objeto de tipo paquete");
         }
     }
-
+/**
+ *Borra un objeto tipo paquete dentro de la base de datos
+ * @param paquete 
+ */
     public void delete(Paquete paquete) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -73,7 +85,11 @@ public class PaquetePersistencia {
             System.out.println("Ocurrió un error al intentar eliminar el objeto de tipo paquete");
         }
     }
-
+/**
+ * Obtiene un registro por ID de un objeto tipo Paquete registrado dentro de la base de datos.
+ * @param id
+ * @return 
+ */
     public Paquete getById(int id) {
         Paquete paquete = new Paquete();
         try {
