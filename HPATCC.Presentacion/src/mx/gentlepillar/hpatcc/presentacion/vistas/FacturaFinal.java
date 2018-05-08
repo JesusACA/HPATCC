@@ -100,7 +100,12 @@ public class FacturaFinal extends javax.swing.JFrame {
 
         lblNoFactura.setText("1");
 
+<<<<<<< HEAD:HPATCC.Presentacion/src/mx/gentlepillar/hpatcc/presentacion/vistas/FacturaFinal.java
         tblLocales.setModel(new javax.swing.table.DefaultTableModel(
+=======
+        jTable1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+>>>>>>> a9504588ef32c0e60348e6c23bf3a139e744b875:HPATCC.Presentacion/src/mx/gentlepillar/hpatcc/presentacion/vistas/Factura.java
             new Object [][] {
 
             },
@@ -113,7 +118,12 @@ public class FacturaFinal extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel4.setText("Llamadas locales");
 
+<<<<<<< HEAD:HPATCC.Presentacion/src/mx/gentlepillar/hpatcc/presentacion/vistas/FacturaFinal.java
         tblCelular.setModel(new javax.swing.table.DefaultTableModel(
+=======
+        jTable2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+>>>>>>> a9504588ef32c0e60348e6c23bf3a139e744b875:HPATCC.Presentacion/src/mx/gentlepillar/hpatcc/presentacion/vistas/Factura.java
             new Object [][] {
 
             },
