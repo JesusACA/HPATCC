@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import mx.gentlepillar.hpatcc.nucleo.entidades.Factura;
 import mx.gentlepillar.hpatcc.nucleo.entidades.Llamada;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -104,4 +105,5 @@ public class LlamadaPersistencia {
         }
         return llamada;
     }
+          
 }

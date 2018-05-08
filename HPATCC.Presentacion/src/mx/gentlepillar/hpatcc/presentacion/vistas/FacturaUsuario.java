@@ -6,6 +6,9 @@
 package mx.gentlepillar.hpatcc.presentacion.vistas;
 
 import java.awt.Color;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mx.gentlepillar.hpatcc.nucleo.entidades.Factura;
 
 /**
  *
@@ -16,6 +19,8 @@ public class FacturaUsuario extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    List<Factura> facturasAnio;
+    List<Factura> facturasMes;
     public FacturaUsuario() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -49,6 +54,11 @@ public class FacturaUsuario extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(245, 249, 233));
 
@@ -104,6 +114,11 @@ public class FacturaUsuario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel1.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
@@ -128,10 +143,20 @@ public class FacturaUsuario extends javax.swing.JFrame {
 
         cmbxMeses.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         cmbxMeses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
+        cmbxMeses.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbxMesesItemStateChanged(evt);
+            }
+        });
 
         lblAnios.setText("Años");
 
         cmbxAnios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022" }));
+        cmbxAnios.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmbxAniosItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -224,14 +249,65 @@ public class FacturaUsuario extends javax.swing.JFrame {
             this.cmbxAnios.setVisible(false);
             this.lblMeses.setVisible(true);
             this.cmbxMeses.setVisible(true);
+            llenarTablaXMes();
         } else {
             this.lblAnios.setVisible(true);
             this.cmbxAnios.setVisible(true);
             this.lblMeses.setVisible(false);
             this.cmbxMeses.setVisible(false);
+            llenarTablaXAnio();
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.lblNombre.setText(Principal.clientePrincipal.getNombre() + " " + Principal.clientePrincipal.getApellidoPaterno() + " " + Principal.clientePrincipal.getApellidoMaterno());
+        llenarTablaXMes();
+    }//GEN-LAST:event_formComponentShown
+
+    private void cmbxMesesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbxMesesItemStateChanged
+        llenarTablaXMes();
+    }//GEN-LAST:event_cmbxMesesItemStateChanged
+
+    private void cmbxAniosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbxAniosItemStateChanged
+        llenarTablaXAnio();
+    }//GEN-LAST:event_cmbxAniosItemStateChanged
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        if (this.jTable1.getSelectedRow() >= 0) {
+            if (this.jComboBox1.getSelectedIndex() == 0) {
+                Principal.facturaViendo = Principal.facturaPers.getById(facturasMes.get(this.jTable1.getSelectedRow()).getId());
+            }else{
+                Principal.facturaViendo = Principal.facturaPers.getById(facturasAnio.get(this.jTable1.getSelectedRow()).getId());
+            }
+            this.setVisible(false);
+            FacturaFinal ff = new FacturaFinal();
+            ff.setVisible(true);
+        }else{
+            Principal.chuyPane.showMessage(null, "No seleccionó una fila valida");
+        }
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    public void llenarTablaXAnio(){
+        DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
+        facturasAnio = Principal.facturaPers.getByYear(Integer.parseInt(this.cmbxAnios.getSelectedItem().toString()), Principal.clientePrincipal);
+        modelo.setRowCount(0);
+        facturasAnio.forEach((factura) -> {
+            modelo.addRow(new Object[]{factura.getFecha().getDate() + "/" + (factura.getFecha().getMonth() + 1) + "/" +
+                    (factura.getFecha().getYear() + 1900)});
+        });
+        this.jTable1.setModel(modelo);
+    }
+    
+    public void llenarTablaXMes(){
+        DefaultTableModel modelo = (DefaultTableModel) this.jTable1.getModel();
+        facturasMes = Principal.facturaPers.getByMonth(this.cmbxMeses.getSelectedIndex() + 1, Principal.clientePrincipal);
+        modelo.setRowCount(0);
+        facturasMes.forEach((factura) -> {
+            modelo.addRow(new Object[]{factura.getFecha().getDate() + "/" + (factura.getFecha().getMonth() + 1) + "/" +
+                    (factura.getFecha().getYear() + 1900)});
+        });
+        this.jTable1.setModel(modelo);
+    }
     /**
      * @param args the command line arguments
      */

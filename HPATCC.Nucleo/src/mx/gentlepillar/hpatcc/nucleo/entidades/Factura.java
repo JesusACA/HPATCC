@@ -61,8 +61,8 @@ public class Factura {
      */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
-        this.anio = fecha.getYear() + 1900;
-        this.mes = fecha.getMonth() + 1;
+        this.setAnio(fecha.getYear() + 1900);
+        this.setMes(fecha.getMonth() + 1);
     }
     
     /**
@@ -127,6 +127,34 @@ public class Factura {
      */
     public void setLlamadas(List<Llamada> llamadas) {
         this.llamadas = llamadas;
+    }
+
+    /**
+     * @return the anio
+     */
+    public int getAnio() {
+        return anio;
+    }
+
+    /**
+     * @param anio the anio to set
+     */
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
+
+    /**
+     * @return the mes
+     */
+    public int getMes() {
+        return mes;
+    }
+
+    /**
+     * @param mes the mes to set
+     */
+    public void setMes(int mes) {
+        this.mes = mes;
     }
     
 }

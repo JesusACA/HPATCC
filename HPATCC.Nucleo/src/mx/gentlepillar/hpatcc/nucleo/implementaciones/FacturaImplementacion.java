@@ -33,9 +33,9 @@ public class FacturaImplementacion implements IFactura{
         double[] totales = new double[3];
         int sobranteLocales;
         int sobranteCelular;
+        int minutos = 0;
         List<Llamada> llamadasLocales = new ArrayList<Llamada>();
         List<Llamada> llamadasCelular = new ArrayList<Llamada>();
-        totales[0] = paquete.getPrecio();
         for (Llamada llamada:factura.getLlamadas()) {
             Pattern pat = Pattern.compile("[^62222] + [/d{10}]$");
             Matcher mat = pat.matcher(llamada.getNumero());
@@ -45,8 +45,11 @@ public class FacturaImplementacion implements IFactura{
                 llamadasCelular.add(llamada);
             }
         }
+        for (Llamada llamada:llamadasCelular) {
+            minutos += llamada.getDuracion();
+        }
         sobranteLocales = llamadasLocales.size() - paquete.getLlamadasLocales();
-        sobranteCelular = llamadasCelular.size() - paquete.getLlamadasCelular();
+        sobranteCelular = minutos - paquete.getLlamadasCelular();
         if (sobranteLocales > 0) {
             totales[1] = sobranteLocales * configuracion.getPrecioLocales();
         }else{
@@ -57,6 +60,7 @@ public class FacturaImplementacion implements IFactura{
         }else{
             totales[2] = 0;
         }
+        totales[0] = paquete.getPrecio() + totales[1] + totales[2];
         return totales;
     }
     

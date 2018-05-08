@@ -9,9 +9,15 @@ import java.awt.Color;
 import java.util.List;
 import mx.gentlepillar.chuyptionpane.vistas.ChuyptionPane;
 import mx.gentlepillar.hpatcc.nucleo.entidades.Administrador;
+import mx.gentlepillar.hpatcc.nucleo.entidades.Cliente;
+import mx.gentlepillar.hpatcc.nucleo.entidades.Factura;
+import mx.gentlepillar.hpatcc.nucleo.implementaciones.FacturaImplementacion;
+import mx.gentlepillar.hpatcc.nucleo.interfaces.IFactura;
 import mx.gentlepillar.hpatcc.persistencia.entidades.AdministradorPersistencia;
 import mx.gentlepillar.hpatcc.persistencia.entidades.ClientePersistencia;
 import mx.gentlepillar.hpatcc.persistencia.entidades.ConfiguracionPersistencia;
+import mx.gentlepillar.hpatcc.persistencia.entidades.FacturaPersistencia;
+import mx.gentlepillar.hpatcc.persistencia.entidades.LlamadaPersistencia;
 import mx.gentlepillar.hpatcc.persistencia.entidades.PaquetePersistencia;
 import mx.gentlepillar.hpatcc.persistencia.operaciones.AdministradorOperaciones;
 import mx.gentlepillar.hpatcc.persistencia.operaciones.ClienteOperaciones;
@@ -34,6 +40,12 @@ public class Principal extends javax.swing.JFrame {
     public static PaquetePersistencia paquetePers = new PaquetePersistencia();
     public static ClientePersistencia clientePers = new ClientePersistencia();
     public static ConfiguracionPersistencia configPersis = new ConfiguracionPersistencia();
+    public static Cliente clientePrincipal = new Cliente();
+    public static FacturaPersistencia facturaPers = new FacturaPersistencia();
+    public static Factura facturaViendo = new Factura();
+    public static IFactura factura = new FacturaImplementacion();
+    public static LlamadaPersistencia llamadaPers = new LlamadaPersistencia();
+    
     /**
      * Creates new form Principal
      */
@@ -238,6 +250,7 @@ public class Principal extends javax.swing.JFrame {
             this.setVisible(false);
             FacturaUsuario fu = new FacturaUsuario();
             fu.setVisible(true);
+            clientePrincipal = clientePers.getByNumber(this.txtNumber.getText());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

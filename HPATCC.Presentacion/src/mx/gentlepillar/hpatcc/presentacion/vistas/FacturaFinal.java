@@ -6,18 +6,23 @@
 package mx.gentlepillar.hpatcc.presentacion.vistas;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import mx.gentlepillar.hpatcc.nucleo.entidades.Llamada;
 
 /**
  *
  * @author osmar
  */
-public class Factura extends javax.swing.JFrame {
+public class FacturaFinal extends javax.swing.JFrame {
 
     /**
      * Creates new form Factura
      */
-    public Factura() {
+    public FacturaFinal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -43,10 +48,10 @@ public class Factura extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         lblNoFactura = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblLocales = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tblCelular = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
@@ -66,6 +71,11 @@ public class Factura extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(245, 249, 233));
 
@@ -90,7 +100,7 @@ public class Factura extends javax.swing.JFrame {
 
         lblNoFactura.setText("1");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblLocales.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -98,12 +108,12 @@ public class Factura extends javax.swing.JFrame {
                 "Numero ", "Llamadas realizadas"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        jScrollPane2.setViewportView(tblLocales);
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel4.setText("Llamadas locales");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tblCelular.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -111,7 +121,7 @@ public class Factura extends javax.swing.JFrame {
                 "Número", "Minutos transcurridos"
             }
         ));
-        jScrollPane3.setViewportView(jTable2);
+        jScrollPane3.setViewportView(tblCelular);
 
         jLabel5.setText("Llamadas a celular");
 
@@ -301,9 +311,90 @@ public class Factura extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.setVisible(false);
-        FacturaUsuario p = new FacturaUsuario();
+        Principal p = new Principal();
         p.setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.lblNombre.setText(Principal.clientePrincipal.getNombre() + " " + Principal.clientePrincipal.getApellidoPaterno() + " "
+                + Principal.clientePrincipal.getApellidoMaterno());
+        this.lblCiudad.setText(Principal.clientePrincipal.getCiudad());
+        this.lblCP.setText(Principal.clientePrincipal.getCodigoPostal());
+        this.lblColonia.setText(Principal.clientePrincipal.getCalle());
+        this.lblNoFactura.setText(Principal.facturaViendo.getNoControl());
+        double[] totales = Principal.factura.totales(Principal.facturaViendo, Principal.clientePrincipal.getPaquete(), Principal.configPersis.getById(1));
+        this.lblTotal.setText(totales[0] + "");
+        this.lblExtraCelular.setText(totales[2] + "");
+        this.lblExtraLocal.setText(totales[1] + "");
+        llenarTablas();
+    }//GEN-LAST:event_formComponentShown
+
+    public void llenarTablas() {
+        List<String> numerosLocales = new ArrayList<String>();
+        List<String> numerosCelular = new ArrayList<String>();
+        List<Llamada> llamadas = Principal.facturaViendo.getLlamadas();
+        List<Llamada> llamadasLocales = new ArrayList<Llamada>();
+        List<Llamada> llamadasCelular = new ArrayList<Llamada>();
+        llamadas.forEach((llamada) -> {
+            if (llamada.getTipo() == 2) {
+                llamadasCelular.add(llamada);
+            } else {
+                llamadasLocales.add(llamada);
+            }
+        });
+        DefaultTableModel modeloLocal = (DefaultTableModel) this.tblLocales.getModel();
+        DefaultTableModel modeloCelular = (DefaultTableModel) this.tblCelular.getModel();
+        modeloLocal.setRowCount(0);
+        modeloCelular.setRowCount(0);
+        boolean pasoLocal = false;
+        boolean pasoCelu = false;
+        for (Llamada llamada : llamadasLocales) {
+            int i = 0;
+            for (String numero : numerosLocales) {
+                if (numero != llamada.getNumero()) {
+                    pasoLocal = false;
+                } else {
+                    pasoLocal = true;
+                    break;
+                }
+            }
+            if (!pasoLocal) {
+                for (int h = 0; h < llamadasLocales.size(); h++) {
+                    if (llamada.getNumero() == llamadasLocales.get(0).getNumero()) {
+                        i++;
+                    }
+                }
+                numerosLocales.add(llamada.getNumero());
+                if (i != 0) {
+                    modeloLocal.addRow(new Object[]{llamada.getNumero(), i});
+                }
+            }
+        }
+        for (Llamada llamada: llamadasCelular) {
+            int i = 0;
+            for (String numero : numerosCelular) {
+                if (numero != llamada.getNumero()) {
+                    pasoCelu = false;
+                } else {
+                    pasoCelu = true;
+                    break;
+                }
+            }
+            if (!pasoCelu) {
+                for (int h = 0; h < llamadasCelular.size(); h++) {
+                    if (llamada.getNumero() == llamadasCelular.get(h).getNumero()) {
+                        i+=llamada.getDuracion();
+                    }
+                }
+                numerosCelular.add(llamada.getNumero());
+                if (i != 0) {
+                    modeloCelular.addRow(new Object[]{llamada.getNumero(), i});
+                }
+            }
+        }
+        this.tblLocales.setModel(modeloLocal);
+        this.tblCelular.setModel(modeloCelular);
+    }
 
     /**
      * @param args the command line arguments
@@ -322,20 +413,21 @@ public class Factura extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FacturaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FacturaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FacturaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Factura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FacturaFinal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Factura().setVisible(true);
+                new FacturaFinal().setVisible(true);
             }
         });
     }
@@ -358,8 +450,6 @@ public class Factura extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JLabel lblCP;
     private javax.swing.JLabel lblCiudad;
     private javax.swing.JLabel lblColonia;
@@ -368,5 +458,7 @@ public class Factura extends javax.swing.JFrame {
     private javax.swing.JLabel lblNoFactura;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTotal;
+    private javax.swing.JTable tblCelular;
+    private javax.swing.JTable tblLocales;
     // End of variables declaration//GEN-END:variables
 }

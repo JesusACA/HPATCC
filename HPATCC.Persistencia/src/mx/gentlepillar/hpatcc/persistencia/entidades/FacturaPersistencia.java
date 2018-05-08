@@ -124,7 +124,7 @@ public class FacturaPersistencia {
             facturas = session.createCriteria(Factura.class).add(Restrictions.and(Restrictions.eq("anio", year), Restrictions.eq("cliente", cliente))).list();
             session.close();
         } catch (Exception e) {
-            System.out.println("No se han podido recuperar las facturas deseadas");
+            System.out.println("No se han podido recuperar las facturas deseadas: " + e);
         }
         return facturas;
     }
@@ -134,19 +134,34 @@ public class FacturaPersistencia {
  * @param cliente
  * @return factura
  */
-    public Factura getByMonth(int month, Cliente cliente) {
-        Factura factura = new Factura();
+    public List<Factura> getByMonth(int month, Cliente cliente) {
+        List<Factura> facturas = new ArrayList<Factura>();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session = HibernateUtil.getSessionFactory().openSession();
             CriteriaBuilder builder = session.getCriteriaBuilder();
             CriteriaQuery<Factura> criteria = builder.createQuery(Factura.class);
             criteria.from(Factura.class);
-            factura = (Factura) session.createCriteria(Factura.class).add(Restrictions.and(Restrictions.eq("mes", month), Restrictions.eq("cliente", cliente))).list().get(0);
+            facturas = session.createCriteria(Factura.class).add(Restrictions.and(Restrictions.eq("mes", month), Restrictions.eq("cliente", cliente))).list();
             session.close();
         } catch (Exception e) {
-            System.out.println("No se han podido recuperar las facturas deseadas");
+            System.out.println("No se han podido recuperar las facturas deseadas: " + e);
         }
-        return factura;
+        return facturas;
+    }
+    public List<Factura> getByClient(Cliente cliente){
+       List<Factura> facturas = new ArrayList<Factura>();
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Factura> criteria = builder.createQuery(Factura.class);
+            criteria.from(Factura.class);
+            facturas = session.createCriteria(Factura.class).add(Restrictions.eq("cliente", cliente)).list();
+            session.close();
+        } catch (Exception e) {
+            System.out.println("No se han podido recuperar las facturas deseadas: " + e);
+        }
+        return facturas; 
     }
 }

@@ -8,7 +8,9 @@ package mx.gentlepillar.hpatcc.presentacion.vistas;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
 import mx.gentlepillar.hpatcc.nucleo.entidades.Cliente;
+import mx.gentlepillar.hpatcc.nucleo.entidades.Factura;
 
 /**
  *
@@ -20,10 +22,9 @@ public class FacturasAdmin extends javax.swing.JFrame {
      * Creates new form FacturasAdmin
      */
     List<Cliente> clientes;
+    List<Factura> facturas;
     public FacturasAdmin() {
         initComponents();
-        this.lblAnios.setVisible(false);
-        this.cmbxAnios.setVisible(false);
         this.setLocationRelativeTo(null);
     }
 
@@ -36,38 +37,15 @@ public class FacturasAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jMenu1 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        cmbxFactura = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblFacturas = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         cmxbCliente = new javax.swing.JComboBox<>();
-        cmbxMeses = new javax.swing.JComboBox<>();
-        cmbxAnios = new javax.swing.JComboBox<>();
-        lblMes = new javax.swing.JLabel();
-        lblAnios = new javax.swing.JLabel();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -118,14 +96,6 @@ public class FacturasAdmin extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel1.setText("Mostrar facturas por:");
 
-        cmbxFactura.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        cmbxFactura.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mes", "Año" }));
-        cmbxFactura.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbxFacturaItemStateChanged(evt);
-            }
-        });
-
         tblFacturas.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         tblFacturas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -143,22 +113,21 @@ public class FacturasAdmin extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblFacturas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblFacturasMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tblFacturas);
 
         jLabel2.setText("De:");
 
         cmxbCliente.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-
-        cmbxMeses.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        cmbxMeses.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
-
-        cmbxAnios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022" }));
-
-        lblMes.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
-        lblMes.setText("Mes:");
-
-        lblAnios.setFont(new java.awt.Font("Roboto", 0, 11)); // NOI18N
-        lblAnios.setText("Año:");
+        cmxbCliente.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cmxbClienteItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,24 +141,15 @@ public class FacturasAdmin extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(cmbxFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel2)
-                                        .addGap(254, 254, 254))
+                                        .addGap(340, 340, 340))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(cmxbCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbxMeses, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblMes))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbxAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblAnios)))
+                                        .addGap(104, 104, 104))))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 705, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 17, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -201,25 +161,10 @@ public class FacturasAdmin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(lblMes, javax.swing.GroupLayout.DEFAULT_SIZE, 21, Short.MAX_VALUE)
-                    .addComponent(lblAnios))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cmbxFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbxMeses, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmxbCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbxAnios, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cmxbCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -254,23 +199,24 @@ public class FacturasAdmin extends javax.swing.JFrame {
         p.setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
-    private void cmbxFacturaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbxFacturaItemStateChanged
-        if (this.cmbxFactura.getSelectedIndex() == 0) {
-            this.lblAnios.setVisible(false);
-            this.cmbxAnios.setVisible(false);
-            this.lblMes.setVisible(true);
-            this.cmbxMeses.setVisible(true);
-        } else {
-            this.lblAnios.setVisible(true);
-            this.cmbxAnios.setVisible(true);
-            this.lblMes.setVisible(false);
-            this.cmbxMeses.setVisible(false);
-        }
-    }//GEN-LAST:event_cmbxFacturaItemStateChanged
-
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         llenarComboCliente();
+        llenarTabla();
     }//GEN-LAST:event_formComponentShown
+
+    private void cmxbClienteItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmxbClienteItemStateChanged
+        llenarTabla();
+    }//GEN-LAST:event_cmxbClienteItemStateChanged
+
+    private void tblFacturasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblFacturasMouseClicked
+        if (this.tblFacturas.getSelectedRow() >= 0) {
+            Principal.clientePrincipal = Principal.clientePers.getByNumber(this.cmxbCliente.getSelectedItem().toString());
+            Principal.facturaViendo = facturas.get(this.tblFacturas.getSelectedRow());
+            this.setVisible(false);
+            FacturaFinal ff = new FacturaFinal();
+            ff.setVisible(true);
+        }
+    }//GEN-LAST:event_tblFacturasMouseClicked
 
     
     public void llenarComboCliente(){
@@ -280,6 +226,17 @@ public class FacturasAdmin extends javax.swing.JFrame {
         modelo.addElement(cliente.getNumero());
         });
         this.cmxbCliente.setModel(modelo);
+    }
+    
+    public void llenarTabla(){
+        DefaultTableModel modelo = (DefaultTableModel) this.tblFacturas.getModel();
+        modelo.setRowCount(0);
+        facturas = Principal.facturaPers.getByClient(Principal.clientePers.getById(clientes.get(this.cmxbCliente.getSelectedIndex()).getId()));
+        for (Factura factura:facturas) {
+            modelo.addRow(new Object[]{factura.getFecha().getDate() + "/" + (factura.getFecha().getMonth() + 1) + "/" +
+                    (factura.getFecha().getYear() + 1900)});
+        }
+        this.tblFacturas.setModel(modelo);
     }
     /**
      * @param args the command line arguments
@@ -318,21 +275,13 @@ public class FacturasAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrar;
-    private javax.swing.JComboBox<String> cmbxAnios;
-    private javax.swing.JComboBox<String> cmbxFactura;
-    private javax.swing.JComboBox<String> cmbxMeses;
     private javax.swing.JComboBox<String> cmxbCliente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblAnios;
-    private javax.swing.JLabel lblMes;
     private javax.swing.JTable tblFacturas;
     // End of variables declaration//GEN-END:variables
 }
