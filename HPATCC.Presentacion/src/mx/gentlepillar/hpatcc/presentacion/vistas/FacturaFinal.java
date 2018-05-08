@@ -18,7 +18,7 @@ import mx.gentlepillar.hpatcc.nucleo.entidades.Llamada;
 public class FacturaFinal extends javax.swing.JFrame {
 
     /**
-     * Creates new form Factura
+     * Creates new form NewJFrame
      */
     public FacturaFinal() {
         initComponents();
@@ -34,8 +34,6 @@ public class FacturaFinal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -62,13 +60,6 @@ public class FacturaFinal extends javax.swing.JFrame {
         lblExtraCelular = new javax.swing.JLabel();
         lblExtraLocal = new javax.swing.JLabel();
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(jList1);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -78,6 +69,11 @@ public class FacturaFinal extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(245, 249, 233));
+        jPanel1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jPanel1ComponentShown(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/gentlepillar/hpatcc/presentacion/imagenes/LogoTolmox.png"))); // NOI18N
 
@@ -100,12 +96,8 @@ public class FacturaFinal extends javax.swing.JFrame {
 
         lblNoFactura.setText("1");
 
-<<<<<<< HEAD:HPATCC.Presentacion/src/mx/gentlepillar/hpatcc/presentacion/vistas/FacturaFinal.java
+        tblLocales.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tblLocales.setModel(new javax.swing.table.DefaultTableModel(
-=======
-        jTable1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
->>>>>>> a9504588ef32c0e60348e6c23bf3a139e744b875:HPATCC.Presentacion/src/mx/gentlepillar/hpatcc/presentacion/vistas/Factura.java
             new Object [][] {
 
             },
@@ -118,12 +110,8 @@ public class FacturaFinal extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel4.setText("Llamadas locales");
 
-<<<<<<< HEAD:HPATCC.Presentacion/src/mx/gentlepillar/hpatcc/presentacion/vistas/FacturaFinal.java
+        tblCelular.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         tblCelular.setModel(new javax.swing.table.DefaultTableModel(
-=======
-        jTable2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
->>>>>>> a9504588ef32c0e60348e6c23bf3a139e744b875:HPATCC.Presentacion/src/mx/gentlepillar/hpatcc/presentacion/vistas/Factura.java
             new Object [][] {
 
             },
@@ -161,7 +149,7 @@ public class FacturaFinal extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 720, Short.MAX_VALUE)
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(btnCerrar))
         );
         jPanel2Layout.setVerticalGroup(
@@ -325,6 +313,10 @@ public class FacturaFinal extends javax.swing.JFrame {
         p.setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
+    private void jPanel1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel1ComponentShown
+        
+    }//GEN-LAST:event_jPanel1ComponentShown
+
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         this.lblNombre.setText(Principal.clientePrincipal.getNombre() + " " + Principal.clientePrincipal.getApellidoPaterno() + " "
                 + Principal.clientePrincipal.getApellidoMaterno());
@@ -339,7 +331,7 @@ public class FacturaFinal extends javax.swing.JFrame {
         llenarTablas();
     }//GEN-LAST:event_formComponentShown
 
-    public void llenarTablas() {
+    public void llenarTablas(){
         List<String> numerosLocales = new ArrayList<String>();
         List<String> numerosCelular = new ArrayList<String>();
         List<Llamada> llamadas = Principal.facturaViendo.getLlamadas();
@@ -405,7 +397,6 @@ public class FacturaFinal extends javax.swing.JFrame {
         this.tblLocales.setModel(modeloLocal);
         this.tblCelular.setModel(modeloCelular);
     }
-
     /**
      * @param args the command line arguments
      */
@@ -452,10 +443,8 @@ public class FacturaFinal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
