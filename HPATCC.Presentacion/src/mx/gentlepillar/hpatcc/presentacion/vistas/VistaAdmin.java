@@ -200,7 +200,7 @@ public class VistaAdmin extends javax.swing.JFrame {
 
     private void btnVisualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVisualizarActionPerformed
         this.setVisible(false);
-        Paquete p = new Paquete();
+        PaqueteAgregar p = new PaqueteAgregar();
         p.setVisible(true);
     }//GEN-LAST:event_btnVisualizarActionPerformed
 

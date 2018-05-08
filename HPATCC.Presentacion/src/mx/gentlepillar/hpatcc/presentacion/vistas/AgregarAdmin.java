@@ -97,13 +97,13 @@ public class AgregarAdmin extends javax.swing.JFrame {
         jLabel3.setText("Contraseña");
 
         txtPass.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtPass.setEchoChar('.');
+        txtPass.setEchoChar('*');
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel4.setText("Repetir contraseña");
 
         txtPassConf.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        txtPassConf.setEchoChar('.');
+        txtPassConf.setEchoChar('*');
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/gentlepillar/hpatcc/presentacion/imagenes/001-plus.png"))); // NOI18N
         jButton2.setText("Dar de alta");

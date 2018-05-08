@@ -19,7 +19,7 @@ import org.hibernate.criterion.Restrictions;
  */
 public class PaquetePersistencia {
 
-    public List<Paquete> obtenerTodos() {
+    public List<Paquete> getAll() {
         List<Paquete> paquetes = new ArrayList<Paquete>();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -83,6 +83,21 @@ public class PaquetePersistencia {
             CriteriaQuery<Paquete> criteria = builder.createQuery(Paquete.class);
             criteria.from(Paquete.class);
             paquete = (Paquete) session.createCriteria(Paquete.class).add(Restrictions.eq("id", id)).list().get(0);
+            session.close();
+        } catch (Exception e) {
+        }
+        return paquete;
+    }
+    
+    public Paquete getByName(String nombre){
+        Paquete paquete = null;
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session = HibernateUtil.getSessionFactory().openSession();
+            CriteriaBuilder builder = session.getCriteriaBuilder();
+            CriteriaQuery<Paquete> criteria = builder.createQuery(Paquete.class);
+            criteria.from(Paquete.class);
+            paquete = (Paquete) session.createCriteria(Paquete.class).add(Restrictions.eq("nombre", nombre)).list().get(0);
             session.close();
         } catch (Exception e) {
         }

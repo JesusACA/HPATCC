@@ -10,8 +10,10 @@ import java.util.List;
 import mx.gentlepillar.chuyptionpane.vistas.ChuyptionPane;
 import mx.gentlepillar.hpatcc.nucleo.entidades.Administrador;
 import mx.gentlepillar.hpatcc.persistencia.entidades.AdministradorPersistencia;
+import mx.gentlepillar.hpatcc.persistencia.entidades.PaquetePersistencia;
 import mx.gentlepillar.hpatcc.persistencia.operaciones.AdministradorOperaciones;
 import mx.gentlepillar.hpatcc.persistencia.operaciones.ClienteOperaciones;
+import mx.gentlepillar.hpatcc.persistencia.operaciones.PaqueteOperaciones;
 
 /**
  *
@@ -26,6 +28,8 @@ public class Principal extends javax.swing.JFrame {
     public static AdministradorOperaciones adminOps = new AdministradorOperaciones();
     public static ChuyptionPane chuyPane = new ChuyptionPane();
     public static AdministradorPersistencia adminPers = new AdministradorPersistencia();
+    public static PaqueteOperaciones paqueteOps = new PaqueteOperaciones();
+    public static PaquetePersistencia paquetePers = new PaquetePersistencia();
 
     /**
      * Creates new form Principal
