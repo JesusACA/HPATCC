@@ -193,7 +193,7 @@ public class FacturasAdmin extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         this.setVisible(false);
-        Principal p = new Principal();
+        VistaAdmin p = new VistaAdmin();
         p.setVisible(true);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
