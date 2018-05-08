@@ -90,6 +90,7 @@ public class Factura extends javax.swing.JFrame {
 
         lblNoFactura.setText("1");
 
+        jTable1.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -103,6 +104,7 @@ public class Factura extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jLabel4.setText("Llamadas locales");
 
+        jTable2.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
