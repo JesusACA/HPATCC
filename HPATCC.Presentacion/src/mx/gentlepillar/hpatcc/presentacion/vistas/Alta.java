@@ -56,7 +56,7 @@ public class Alta extends javax.swing.JFrame {
         cmbxEstado = new javax.swing.JComboBox<>();
         txtApellidoMat = new javax.swing.JTextField();
         txtCiudad = new javax.swing.JTextField();
-        txtCalle = new javax.swing.JTextField();
+        txtColonia = new javax.swing.JTextField();
         txtCp = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         btnCerrar = new javax.swing.JButton();
@@ -88,7 +88,7 @@ public class Alta extends javax.swing.JFrame {
         jLabel2.setText("Nombre");
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel3.setText("Calle");
+        jLabel3.setText("Colonia");
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel4.setText("Ciudad");
@@ -116,7 +116,7 @@ public class Alta extends javax.swing.JFrame {
 
         txtCiudad.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
-        txtCalle.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtColonia.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         txtCp.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         txtCp.setText("\n");
@@ -160,6 +160,8 @@ public class Alta extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel9.setText("Paquete");
 
+        cmbxPaquete.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+
         btnAceptar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -195,7 +197,7 @@ public class Alta extends javax.swing.JFrame {
                                 .addComponent(txtNombre)
                                 .addComponent(txtApellidoPat)
                                 .addComponent(txtCiudad)
-                                .addComponent(txtCalle)
+                                .addComponent(txtColonia)
                                 .addComponent(txtCp)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,7 +275,7 @@ public class Alta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -283,8 +285,8 @@ public class Alta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbxPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                    .addComponent(btnAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -324,7 +326,7 @@ public class Alta extends javax.swing.JFrame {
                 cliente.setNombre(txtNombre.getText());
                 cliente.setApellidoMaterno(txtApellidoMat.getText());
                 cliente.setApellidoPaterno(txtApellidoPat.getText());
-                cliente.setCalle(txtCalle.getText());
+                cliente.setCalle(txtColonia.getText());
                 cliente.setCiudad(txtCiudad.getText());
                 cliente.setCodigoPostal(txtCp.getText());
                 cliente.setContrasenia(txtContrasenia.getText());
@@ -353,7 +355,7 @@ public class Alta extends javax.swing.JFrame {
     public void limpiarCamps() {
         txtApellidoMat.setText("");
         txtApellidoPat.setText("");
-        txtCalle.setText("");
+        txtColonia.setText("");
         txtCiudad.setText("");
         txtContrasenia.setText("");
         txtCp.setText("");
@@ -427,8 +429,8 @@ public class Alta extends javax.swing.JFrame {
     private javax.swing.JLabel lblFoto;
     private javax.swing.JTextField txtApellidoMat;
     private javax.swing.JTextField txtApellidoPat;
-    private javax.swing.JTextField txtCalle;
     private javax.swing.JTextField txtCiudad;
+    private javax.swing.JTextField txtColonia;
     private javax.swing.JPasswordField txtContrasenia;
     private javax.swing.JTextField txtCp;
     private javax.swing.JTextField txtNombre;
