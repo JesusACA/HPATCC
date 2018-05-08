@@ -18,16 +18,11 @@ import org.hibernate.criterion.Restrictions;
  * @author jesus
  */
 public class PaquetePersistencia {
-<<<<<<< HEAD
-
-    public List<Paquete> getAll() {
-=======
 /**
  * Obtiene todos los objetos tipo Paquete que esten registrados dentro de la base de datos.
  * @return paquetes
  */
-    public List<Paquete> obtenerTodos() {
->>>>>>> bb341d61fa2e074d070a05427795d767890be9b2
+    public List<Paquete> getAll() {
         List<Paquete> paquetes = new ArrayList<Paquete>();
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
