@@ -6,6 +6,7 @@
 package mx.gentlepillar.hpatcc.presentacion.vistas;
 
 import java.awt.Color;
+import mx.gentlepillar.hpatcc.nucleo.entidades.Administrador;
 
 /**
  *
@@ -35,11 +36,11 @@ public class AgregarAdmin extends javax.swing.JFrame {
         btnCerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNoControl = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtPass = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        txtPassConf = new javax.swing.JPasswordField();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -90,20 +91,27 @@ public class AgregarAdmin extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel2.setText("Número de control");
 
-        jTextField1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtNoControl.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel3.setText("Contraseña");
 
-        jPasswordField1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtPass.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtPass.setEchoChar('.');
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jLabel4.setText("Repetir contraseña");
 
-        jPasswordField2.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtPassConf.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        txtPassConf.setEchoChar('.');
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/gentlepillar/hpatcc/presentacion/imagenes/001-plus.png"))); // NOI18N
         jButton2.setText("Dar de alta");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -117,9 +125,9 @@ public class AgregarAdmin extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1)
-                    .addComponent(jPasswordField1)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
+                    .addComponent(txtNoControl)
+                    .addComponent(txtPass)
+                    .addComponent(txtPassConf, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addContainerGap())
@@ -133,18 +141,18 @@ public class AgregarAdmin extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtNoControl, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPasswordField2)
+                        .addComponent(txtPassConf)
                         .addGap(9, 9, 9)))
                 .addContainerGap())
         );
@@ -172,10 +180,35 @@ public class AgregarAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarMouseExited
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-        this.setVisible(false);
-        VistaAdmin vi = new VistaAdmin();
-        vi.setVisible(true);
+        if (Principal.i == 0) {
+            this.setVisible(false);
+        } else {
+            VistaAdmin vi = new VistaAdmin();
+            vi.setVisible(true);
+        }
     }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Administrador administrador = new Administrador();
+        if (!Principal.adminOps.exists(this.txtNoControl.getText())) {
+            Principal.chuyPane.showMessage(null, "Este numero de control ya existe", "Error");
+        } else {
+            if (txtPass.getText().equals(txtPassConf.getText())) {
+                administrador.setNoControl(this.txtNoControl.getText());
+                administrador.setContrasenia(this.txtPass.getText());
+                Principal.adminPers.save(administrador);
+                if (Principal.i == 0) {
+                    this.setVisible(false);
+                } else {
+                    VistaAdmin vi = new VistaAdmin();
+                    vi.setVisible(true);
+                }
+                Principal.chuyPane.showMessage(null, "Se ha registrado el administrador", "Exito");
+            } else {
+                Principal.chuyPane.showMessage(null, "Las contraseñas no coinciden", "Error");
+            }
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,8 +254,8 @@ public class AgregarAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txtNoControl;
+    private javax.swing.JPasswordField txtPass;
+    private javax.swing.JPasswordField txtPassConf;
     // End of variables declaration//GEN-END:variables
 }

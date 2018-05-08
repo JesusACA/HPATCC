@@ -7,8 +7,10 @@ package mx.gentlepillar.hpatcc.presentacion.vistas;
 
 import java.awt.Color;
 import java.util.List;
+import mx.gentlepillar.chuyptionpane.vistas.ChuyptionPane;
 import mx.gentlepillar.hpatcc.nucleo.entidades.Administrador;
 import mx.gentlepillar.hpatcc.persistencia.entidades.AdministradorPersistencia;
+import mx.gentlepillar.hpatcc.persistencia.operaciones.AdministradorOperaciones;
 
 /**
  *
@@ -17,6 +19,10 @@ import mx.gentlepillar.hpatcc.persistencia.entidades.AdministradorPersistencia;
 public class Principal extends javax.swing.JFrame {
     AdministradorPersistencia adminsPers = new AdministradorPersistencia();
     List<Administrador> administradores;
+    public static int i = 0;
+    public static AdministradorOperaciones adminOps = new AdministradorOperaciones();
+    public static ChuyptionPane chuyPane = new ChuyptionPane();
+    public static AdministradorPersistencia adminPers = new AdministradorPersistencia();
      /**
      * Creates new form Principal
      */
@@ -233,6 +239,8 @@ public class Principal extends javax.swing.JFrame {
         AgregarAdmin ag = new AgregarAdmin();
         if (administradores.size() <= 0) {
             ag.setVisible(true);
+        }else{
+            i = 1;
         }
     }//GEN-LAST:event_formComponentShown
 
