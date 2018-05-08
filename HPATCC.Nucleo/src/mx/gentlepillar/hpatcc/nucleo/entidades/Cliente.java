@@ -26,8 +26,6 @@ public class Cliente {
     private String ciudad;
     private String estado;
     private String codigoPostal;
-    private int llamadasLocales;
-    private int llamadasCelular;
     private Paquete paquete;
     private String numero;
     private String contrasenia;
@@ -116,34 +114,6 @@ public class Cliente {
      */
     public void setCodigoPostal(String codigoPostal) {
         this.codigoPostal = codigoPostal;
-    }
-
-    /**
-     * @return the llamadasLocales
-     */
-    public int getLlamadasLocales() {
-        return llamadasLocales;
-    }
-
-    /**
-     * @param llamadasLocales the llamadasLocales to set
-     */
-    public void setLlamadasLocales(int llamadasLocales) {
-        this.llamadasLocales = llamadasLocales;
-    }
-
-    /**
-     * @return the llamadasCelular
-     */
-    public int getLlamadasCelular() {
-        return llamadasCelular;
-    }
-
-    /**
-     * @param llamadasCelular the llamadasCelular to set
-     */
-    public void setLlamadasCelular(int llamadasCelular) {
-        this.llamadasCelular = llamadasCelular;
     }
 
     /**

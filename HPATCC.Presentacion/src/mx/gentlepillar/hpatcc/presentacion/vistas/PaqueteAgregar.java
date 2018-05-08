@@ -344,6 +344,7 @@ public class PaqueteAgregar extends javax.swing.JFrame {
         Principal.paquetePers.delete(paqueteEditando);
         limpiarCampos();
         Principal.chuyPane.showMessage(null, "Paquete eliminado", "Exito");
+        llenarCombo();
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     public void llenarCombo() {
