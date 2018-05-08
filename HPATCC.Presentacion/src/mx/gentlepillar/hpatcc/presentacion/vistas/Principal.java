@@ -6,14 +6,18 @@
 package mx.gentlepillar.hpatcc.presentacion.vistas;
 
 import java.awt.Color;
+import java.util.List;
+import mx.gentlepillar.hpatcc.nucleo.entidades.Administrador;
+import mx.gentlepillar.hpatcc.persistencia.entidades.AdministradorPersistencia;
 
 /**
  *
  * @author jesus
  */
 public class Principal extends javax.swing.JFrame {
-
-    /**
+    AdministradorPersistencia adminsPers = new AdministradorPersistencia();
+    List<Administrador> administradores;
+     /**
      * Creates new form Principal
      */
     public Principal() {
@@ -45,6 +49,11 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(245, 249, 233));
 
@@ -192,7 +201,7 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseEntered
-        btnCerrar.setForeground(new Color(73, 109, 219));
+        btnCerrar.setForeground(new Color(255,255,255));
     }//GEN-LAST:event_btnCerrarMouseEntered
 
     private void btnCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCerrarMouseExited
@@ -218,6 +227,14 @@ public class Principal extends javax.swing.JFrame {
      la.setVisible(true);
      this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        administradores = adminsPers.getAll();
+        AgregarAdmin ag = new AgregarAdmin();
+        if (administradores.size() <= 0) {
+            ag.setVisible(true);
+        }
+    }//GEN-LAST:event_formComponentShown
 
     /**
      * @param args the command line arguments
