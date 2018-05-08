@@ -1,3 +1,5 @@
 /HPATCC.Nucleo/build/
 /HPATCC.Presentacion/build/
 /HPATCC.Persistencia/build/
+/HPATCC.Persistencia/dist/
+/HPATCC.Nucleo/dist/

@@ -20,6 +20,11 @@ public class HibernateUtil {
     private static StandardServiceRegistry serviceRegistry;
     private static SessionFactory sessionFactory;
 
+    /**
+     * Inicia la sesión de Hibernate para poder tener conexión a la base de datos.
+     * @return 
+     */
+    
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {

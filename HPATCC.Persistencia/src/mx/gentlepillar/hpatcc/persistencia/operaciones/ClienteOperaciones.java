@@ -16,6 +16,12 @@ import mx.gentlepillar.hpatcc.persistencia.entidades.ClientePersistencia;
 public class ClienteOperaciones {
     ClientePersistencia  clientePers = new ClientePersistencia(); 
     ChuyptionPane pane = new ChuyptionPane();
+    /**
+     * Verifica que el numero del usuario sea existente y verifica si su contraseña es correcta
+     * @param numero
+     * @param contrasenia
+     * @return respuesta
+     */
     public boolean verify(String numero, String contrasenia){
         boolean respuesta = false;
         Cliente cliente = clientePers.getByNumber(numero);
@@ -30,7 +36,11 @@ public class ClienteOperaciones {
         }
         return respuesta;
     }
-    
+    /**
+     * Verifica que el numero no este ya registrado
+     * @param numero
+     * @return estado;
+     */
     public boolean exists(String numero){
         return clientePers.getByNumber(numero) == null;
     }

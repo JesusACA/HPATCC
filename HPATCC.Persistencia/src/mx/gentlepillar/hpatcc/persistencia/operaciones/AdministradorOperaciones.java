@@ -17,6 +17,12 @@ public class AdministradorOperaciones {
     AdministradorPersistencia adminsPers = new AdministradorPersistencia();
     Administrador administrador = null;
     ChuyptionPane chuyPane = new ChuyptionPane();
+   /**
+    * Verifica si el administrador existe dentro de la base de datos y comprueba que su contraseña sea correcta.
+    * @param noControl
+    * @param contrasenia
+    * @return validacion
+    */
     public boolean verify(String noControl, String contrasenia){
         boolean validacion = false;
         administrador = adminsPers.getByNumControl(noControl);
@@ -31,7 +37,11 @@ public class AdministradorOperaciones {
         }
         return validacion;
     }
-    
+    /**
+     * Verifica si ya está registrado el numero de control
+     * @param noControl
+     * @return administrador
+     */
     public boolean exists(String noControl){
         administrador = adminsPers.getByNumControl(noControl);
         return administrador == null;

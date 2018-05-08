@@ -19,7 +19,10 @@ import org.hibernate.criterion.Restrictions;
  * @author jesus
  */
 public class FacturaPersistencia {
-
+/**
+ * Obtiene todos los registrs de Factura dentro de la base de datos
+ * @return 
+ */
     public List<Factura> obtenerTodos() {
         List<Factura> facturas = new ArrayList<Factura>();
         try {
@@ -35,7 +38,10 @@ public class FacturaPersistencia {
         }
         return facturas;
     }
-
+/**
+ * Guarda un objeto tipo factura dentro de la base de datos.
+ * @param factura 
+ */
     public void save(Factura factura) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -48,7 +54,10 @@ public class FacturaPersistencia {
             System.out.println("Ocurrió un error al intentar guardad el objeto de tipo factura");
         }
     }
-
+/**
+ * Actualiza un objeto tipo Factura dentro de la base de datos.
+ * @param factura 
+ */
     public void update(Factura factura) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -61,7 +70,10 @@ public class FacturaPersistencia {
             System.out.println("Ocurrió un error al intentar actualizar el objeto de tipo factura");
         }
     }
-
+/**
+ * Borra un objeto tipo factura dentro de la base de datos.
+ * @param factura 
+ */
     public void delete(Factura factura) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -74,7 +86,11 @@ public class FacturaPersistencia {
             System.out.println("Ocurrió un error al intentar eliminar el objeto de tipo factura");
         }
     }
-
+/**
+ * Obtiene por id todos los registrs de tipo Factura dentro de la base de datos
+ * @param id
+ * @return 
+ */
     public Factura getById(int id) {
         Factura factura = new Factura();
         try {
@@ -91,6 +107,12 @@ public class FacturaPersistencia {
         return factura;
     }
 
+    /**
+     * Recupera las facturas indicando el año y el cliente que esten dentro de la base de datos.
+     * @param year
+     * @param cliente
+     * @return facturas
+     */
     public List<Factura> getByYear(int year, Cliente cliente) {
         List<Factura> facturas = new ArrayList<Factura>();
         try {
@@ -106,7 +128,12 @@ public class FacturaPersistencia {
         }
         return facturas;
     }
-
+/**
+ * Recuera las facturas indicando el mes y el cliente que esten dentro de la base de datos.
+ * @param month
+ * @param cliente
+ * @return factura
+ */
     public Factura getByMonth(int month, Cliente cliente) {
         Factura factura = new Factura();
         try {

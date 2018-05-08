@@ -19,6 +19,12 @@ import org.hibernate.criterion.Restrictions;
  */
 public class ClientePersistencia {
 
+    /**
+     * 
+     * @param numero
+     * Busca dentro de la base de datos por Numero de telefono a un objeto tipo Cliente
+     * @return cliente 
+     */
     public Cliente getByNumber(String numero) {
         Cliente cliente = null;
         try {
@@ -34,7 +40,10 @@ public class ClientePersistencia {
         }
         return cliente;
     }
-        
+        /**
+         * Regresa todos los clientes que esten registrados en la base de datos.
+         * @return clientes
+         */
     public List<Cliente> obtenerTodos() {
         List<Cliente> clientes = new ArrayList<Cliente>();
         try {
@@ -50,7 +59,10 @@ public class ClientePersistencia {
         }
         return clientes;
     }
-
+/**
+ * Guarda un objeto tipo Cliente dentro de la base de datos.
+ * @param cliente 
+ */
     public void save(Cliente cliente) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -63,7 +75,10 @@ public class ClientePersistencia {
             System.out.println("Ocurrió un error al intentar guardad el objeto de tipo Cliente");
         }
     }
-
+/**
+ * Actualiza un objeto tipo Cliente dentro de la base de datos.
+ * @param cliente 
+ */
     public void update(Cliente cliente) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -76,7 +91,10 @@ public class ClientePersistencia {
             System.out.println("Ocurrió un error al intentar actualizar el objeto de tipo Cliente");
         }
     }
-
+/**
+ * Borra un objeto tipo Cliente dentro de la base de datos.
+ * @param cliente 
+ */
     public void delete(Cliente cliente) {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
@@ -89,7 +107,11 @@ public class ClientePersistencia {
             System.out.println("Ocurrió un error al intentar eliminar el objeto de tipo Cliente");
         }
     }
-
+/**
+ * Busca dentro de la base de datos por Id un objeto tipo Cliente.
+ * @param id
+ * @return cliente
+ */
     public Cliente getById(int id) {
         Cliente cliente = new Cliente();
         try {
