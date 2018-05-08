@@ -13,22 +13,27 @@ import mx.gentlepillar.hpatcc.persistencia.entidades.AdministradorPersistencia;
  *
  * @author jesus
  */
-public class AdminsitradorOperaciones {
+public class AdministradorOperaciones {
     AdministradorPersistencia adminsPers = new AdministradorPersistencia();
     Administrador administrador = null;
     ChuyptionPane chuyPane = new ChuyptionPane();
-    public boolean verify(String noControl, char[] contrasenia){
+    public boolean verify(String noControl, String contrasenia){
         boolean validacion = false;
         administrador = adminsPers.getByNumControl(noControl);
         if (administrador != null) {
             if (contrasenia.equals(administrador.getContrasenia())) {
                 validacion = true;
             }else{
-                chuyPane.showMessage(null, "La contrasenia es incorrecta", "Error");
+                chuyPane.showMessage(null, "La contraseña es incorrecta", "Error");
             }
         }else{
-            chuyPane.showMessage(null, "No se ha encontrador el administrador solicitado", "Error");
+            chuyPane.showMessage(null, "Administrador no encontrado", "Error");
         }
         return validacion;
+    }
+    
+    public boolean exists(String noControl){
+        administrador = adminsPers.getByNumControl(noControl);
+        return administrador == null;
     }
 }

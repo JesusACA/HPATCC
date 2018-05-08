@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class Administrador {
     private int id;
     private String noControl;
-    private char[] contrasenia;
+    private String contrasenia;
 
     /**
      * @return the id
@@ -52,14 +52,14 @@ public class Administrador {
     /**
      * @return the contrasenia
      */
-    public char[] getContrasenia() {
+    public String getContrasenia() {
         return contrasenia;
     }
 
     /**
      * @param contrasenia the contrasenia to set
      */
-    public void setContrasenia(char[] contrasenia) {
+    public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
 }
